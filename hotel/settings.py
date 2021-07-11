@@ -57,7 +57,7 @@ ROOT_URLCONF = 'hotel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'layouts')],
+        'DIRS': [os.path.join(BASE_DIR, 'layouts'), os.path.join(BASE_DIR, 'imgs')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
