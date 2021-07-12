@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +10,7 @@
 <body>
 {%block 'menu'%}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#"><img style="width: 100px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Habbo-logo.png/1200px-Habbo-logo.png" alt=""></a>
+  <a class="navbar-brand" href="#" ><img width="100" src="{% static 'hotel/media/logo.png' %}" alt="My image"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -23,7 +24,7 @@
         <a class="nav-link" href="{%url 'clientes'%}">Clientes <span class="sr-only">(página atual)</span></a>
       </li>
         <li class="nav-item active">
-        <a class="nav-link" href="#">Reservas <span class="sr-only">(página atual)</span></a>
+        <a class="nav-link" href="{%url 'reserva'%}">Reservas <span class="sr-only">(página atual)</span></a>
       </li>
     </ul>
 <!--    <form class="form-inline my-2 my-lg-0">-->

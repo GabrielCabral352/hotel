@@ -21,6 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('cliente/', include('cliente.urls')),
+    path('reserva/', include('reservas.urls')),
+
 ]
 
 urlpatterns += staticfiles_urlpatterns()
