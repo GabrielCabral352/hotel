@@ -1,9 +1,12 @@
 {%extends 'base.html'%}
 {%block 'titulo'%}Cadastro de Clientes{%endblock%}
 {%block 'conteudo'%}
+<a href="{% url 'lista_cliente' %}"><button style="height: 50x; width: 150px; position: absolute; margin-top: calc(100vh - 120px);margin-left: calc(100vw - 180px) " class="btn btn-dark">Ver Clientes</button>
+</a>
 <div style="align-items: center; text-align: center; display: flex; justify-content: center; flex-direction: column;margin-top: 100px">
   <h1>Cadastrar novo Cliente</h1>
   <form method="POST" action="{% url 'inserir'%}">
+
     {% csrf_token %}
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>

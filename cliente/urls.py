@@ -3,6 +3,7 @@ from . import views
 from home.views import index
 urlpatterns = [
     path('cadClientes/', views.listaCliente, name='clientes'),
-    path('inserir/', views.cadCliente, name='inserir'),
+    path('', views.cadCliente, name='inserir'),
+    path('listagem/', views.listCliente, name='lista_cliente'),
     path('', index, name='home'),
 ]

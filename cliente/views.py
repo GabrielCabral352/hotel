@@ -3,6 +3,7 @@ from home.views import index
 # Create your views here.
 from static.hotel.bd.connection import conn
 
+
 def listaCliente(request):
     return render(request, 'cliente/index.html')
 
@@ -19,3 +20,12 @@ def cadCliente(request):
         insere.close()
         conn.commit()
     return render(request, 'cliente/index.html')
+
+
+def listCliente(request):
+    with conn.cursor() as read:
+        sql = "select * from tb_clientes"
+        read.execute(sql)
+        dados = read.fetchall()
+    print(dados)
+    return render(request, 'cliente/load_clientes.html', {'dados': dados})
