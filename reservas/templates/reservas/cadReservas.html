@@ -1,33 +1,37 @@
 {%extends 'base.html'%}
 {%block 'titulo'%}Cadastro de Clientes{%endblock%}
 {%block 'conteudo'%}
+<a href="{% url 'lista_reservas' %}"><button style="height: 50x; width: 150px; position: absolute; margin-top: calc(100vh - 120px);margin-left: calc(100vw - 180px) " class="btn btn-dark">Ver Reservas</button>
+</a>
 <div style="align-items: center; text-align: center; display: flex; justify-content: center; flex-direction: column;margin-top: 100px">
   <h1>Cadastrar nova Reserva</h1>
-  <form>
+  <form method="post" action="{% url 'fazer_reserva'%}">
+    {% csrf_token %}
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input style="height: 50x; width: 500px;" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Email">
+      <label for="exampleInputEmail1">Cliente: </label>
+      <select style="height: 50x; width: 500px;"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="cliente" >
+        {% for pessoa in dados%}
+          <option value="{{pessoa.id}}">{{ pessoa.name }} - {{pessoa.cpf}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Data e Hora de Reserva:</label>
+      <input style="height: 50x; width: 500px" type="datetime-local" class="form-control" id="exampleInputName" aria-describedby="nomeHelp" name="data"  placeholder="Nome Completo">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Data e Hora de Saida:</label>
+      <input style="height: 50x; width: 500px" type="datetime-local" class="form-control" id="exampleInputName1" aria-describedby="nomeHelp" name="data2"  placeholder="Nome Completo">
+    </div>
+    <label for="exampleInputEmail1">Quarto</label>
+    <select style="height: 50x; width: 500px;"  class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" name="quarto">
 
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Nome</label>
-      <input style="height: 50x; width: 500px" type="text" class="form-control" id="exampleInputName" aria-describedby="nomeHelp" name="name"  placeholder="Nome Completo">
-
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">CPF</label>
-      <input style="height: 50x; width: 500px" type="email" class="form-control" id="exampleInputCPF" aria-describedby="cpfHelp" name="cpf"  placeholder="CPF">
-
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Senha</label>
-      <input style="height: 50x; width: 500px" type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Senha">
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Concordo com os Termos</label>
-    </div>
-    <button style="height: 50x; width: 200px;" type="submit" class="btn btn-primary">Salvar</button>
+        {% for quartos in dados2%}
+          <option value="{{quartos.id}}">{{ quartos.identifica }}</option>
+        {% endfor %}
+      </select>
+    <br/>
+    <button style="height: 50x; width: 200px;" type="submit" class="btn btn-primary">Fazer Reserva</button>
   </form>
 </div>
 
