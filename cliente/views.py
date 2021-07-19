@@ -40,5 +40,40 @@ def clienteDelete(request, id):
         delete.execute(sql, id)
         conn.commit()
         delete.close()
-    return render(request, 'cliente/load_clientes.html')
+
+    with conn.cursor() as read:
+        sql = "select * from tb_clientes"
+        read.execute(sql)
+        dados = read.fetchall()
+        read.close()
+    return render(request, 'cliente/load_clientes.html', {'dados': dados})
+    #return render(request, 'cliente/load_clientes.html')
+
+
+def editCliente(request, id):
+    with conn.cursor() as read:
+        sql = "select * from tb_clientes where id = %s"
+        read.execute(sql, id)
+        dados = read.fetchall()
+        read.close()
+    return render(request, 'cliente/edit_clientes.html', {'dados': dados})
+
+
+def attCliente(request, id):
+    email = request.POST['email']
+    name = request.POST['name']
+    cpf = request.POST['cpf']
+    password = request.POST['password']
+
+    with conn.cursor() as att:
+        sql = "update tb_clientes SET name = %s, email = %s, cpf = %s, senha = %s where id = %s"
+        att.execute(sql,(name, email, cpf, password, id))
+        conn.commit()
+        att.close()
+    with conn.cursor() as read:
+        sql = "select * from tb_clientes"
+        read.execute(sql)
+        dados = read.fetchall()
+        read.close()
+    return render(request, 'cliente/load_clientes.html', {'dados': dados})
 

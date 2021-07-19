@@ -8,7 +8,7 @@
 <form  class="form-inline d-flex justify-content-end md-form form-sm active-purple active-purple-2 mt-2" style="margin-right: 15%">
 
 
-  <input class="form-control form-control-sm ml-3 w-15" type="text" placeholder="Search"aria-label="Search">
+  <input class="form-control form-control-sm ml-3 w-15" type="text" placeholder="Search" aria-label="Search">
   <div style="-webkit-transform: rotate(45deg);
                -moz-transform: rotate(45deg);
                  -o-transform: rotate(45deg);
@@ -43,7 +43,7 @@
         <td>{{ d.senha }}</td>
         <td style="text-align: end;">
           <a href="{% url 'delCliente' d.id %}"><button type="button" class="btn btn-danger">🗑️</button></a>
-          <a href=""><button type="button" class="btn btn-warning">🖊</button></a>
+          <a href="{% url 'editCliente' d.id %}"><button type="button" class="btn btn-warning">🖊</button></a>
         </td>
 
       </tr>
