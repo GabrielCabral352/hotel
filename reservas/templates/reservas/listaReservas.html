@@ -1,6 +1,5 @@
 {%extends 'base.html'%}
-{%block 'titulo'%}Lista de Clientes{%endblock%}
-
+{%block 'titulo'%}Lista de Reservas{%endblock%}
 {%block 'conteudo'%}
 
 
@@ -36,14 +35,35 @@
   <tbody>
     {% for d in dados %}
       <tr>
-        <td>{{ d.id }}</td>
-        <td>{{ d.name }}</td>
-        <td>{{ d.email }}</td>
-        <td>{{ d.cpf }}</td>
-        <td>{{ d.senha }}</td>
+        <td>{{ d.id }}
+
+
+        </td>
+        <td>
+
+          {% for client in clientes %}
+
+            {% if client.id == d.cliente %}
+              {{ client.name }}
+            {% endif %}
+
+          {% endfor %}
+
+        </td>
+        <td>{{ d.data_ini }}</td>
+        <td>{{ d.data_end }}</td>
+        <td>
+        {% for suit in suites %}
+
+            {% if suit.id == d.quarto %}
+              {{ suit.identifica }}
+            {% endif %}
+          {% endfor %}
+        </td>
         <td style="text-align: end;">
-          <a href="{% url 'delCliente' d.id %}"><button type="button" class="btn btn-danger">🗑️</button></a>
-          <a href="{% url 'editCliente' d.id %}"><button type="button" class="btn btn-warning">🖊</button></a>
+          <a href="{% url 'delReserva' d.id %}"><button type="button" class="btn btn-danger">🗑️</button></a>
+          <a href="{% url 'editReserva' d.id %}"><button type="button" class="btn btn-warning">🖊</button></a>
+          <a href="{% url 'changeSit' d.id %}"><button type="button" class="btn btn-dark">📴</button></a>
         </td>
 
       </tr>

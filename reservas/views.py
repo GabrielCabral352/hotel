@@ -19,7 +19,24 @@ def adicionaReserva(request):
 
 
 def listaReserva(request):
-    return render(request, 'reservas/listaReservas.html')
+    with conn.cursor() as read:
+        sql = "select * from tb_reservas"
+        read.execute(sql)
+        dados = read.fetchall()
+        read.close()
+    with conn.cursor() as read:
+        sql = "select id, name from tb_clientes"
+        read.execute(sql)
+        clientes = read.fetchall()
+        read.close()
+    with conn.cursor() as read:
+        sql = "select id, identifica from tb_suites where sit = 1"
+        read.execute(sql)
+        suites = read.fetchall()
+        print(suites)
+        read.close()
+
+    return render(request, 'reservas/listaReservas.html', {'dados': dados, 'clientes': clientes, 'suites': suites})
 
 
 def inserirReserva(request):
@@ -33,3 +50,71 @@ def inserirReserva(request):
         insere.close()
         conn.commit()
     return render(request, 'reservas/listaReservas.html')
+
+
+def reservaDelete(request, id):
+    with conn.cursor() as read:
+        sql = "select * from tb_reservas"
+        read.execute(sql)
+        dados = read.fetchall()
+        read.close()
+    with conn.cursor() as read:
+        sql = "select id, name from tb_clientes"
+        read.execute(sql)
+        clientes = read.fetchall()
+        read.close()
+
+    with conn.cursor() as read:
+        sql = "select id, identifica from tb_suites where sit = 1"
+        read.execute(sql)
+        suites = read.fetchall()
+        read.close()
+
+    return render(request, 'reservas/listaReservas.html', {'dados': dados, 'clientes': clientes, 'suites': suites})
+
+
+def reservaEdit(request, id):
+    with conn.cursor() as read:
+        sql = "select * from tb_reservas"
+        read.execute(sql)
+        dados = read.fetchall()
+        read.close()
+    with conn.cursor() as read:
+        sql = "select id, name from tb_clientes"
+        read.execute(sql)
+        clientes = read.fetchall()
+        read.close()
+    with conn.cursor() as read:
+        sql = "select id, identifica from tb_suites where sit = 1"
+        read.execute(sql)
+        suites = read.fetchall()
+        read.close()
+    return render(request, 'reservas/listaReservas.html', {'dados': dados, 'clientes': clientes, 'suites': suites})
+
+
+def changeSit(request, id):
+    with conn.cursor() as read:
+        sql = "select * from tb_reservas"
+        read.execute(sql)
+        dados = read.fetchall()
+        read.close()
+    with conn.cursor() as read:
+        sql = "select id, name from tb_clientes"
+        read.execute(sql)
+        clientes = read.fetchall()
+        read.close()
+    with conn.cursor() as read:
+        sql = "select id, identifica from tb_suites where sit = 1"
+        read.execute(sql)
+        suites = read.fetchall()
+        read.close()
+    return render(request, 'reservas/listaReservas.html', {'dados': dados, 'clientes': clientes, 'suites': suites})
+
+
+def editReserva(request, id):
+    with conn.cursor() as read:
+        sql = "select * from tb_reservas where id = %s"
+        read.execute(sql, id)
+        dados = read.fetchall()
+        read.close()
+    return render(request, 'reservas/edit_reservas.html', {'dados': dados})
