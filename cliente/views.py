@@ -20,9 +20,9 @@ def cadCliente(request):
             insere.execute(sql, (name, email, cpf, password))
             insere.close()
             conn.commit()
-        return render(request, 'cliente/index.html')
+        return render(request, 'cliente/index.html', {'pop': 1})
     except:
-        pass
+        return render(request, 'cliente/index.html', {'pop': 0})
 
 
 def listCliente(request):

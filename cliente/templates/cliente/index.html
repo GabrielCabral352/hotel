@@ -1,6 +1,30 @@
 {%extends 'base.html'%}
 {%block 'titulo'%}Cadastro de Clientes{%endblock%}
 {%block 'conteudo'%}
+
+{% if pop == 1 %}
+<script >
+    setTimeout(function(){
+        document.getElementById('Mysmallmodal').style.display = 'none'
+    }, 1000);
+</script>
+		<div class="modal-dialog modal-sm"  id="Mysmallmodal" style="display:block; position:absolute; margin-left: calc(50% - 130px); margin-top: -50px "  >
+			<div class="modal-content btn-sucess" style="background-color: 	#00FA9A; color:white">
+				<div class="modal-header">
+
+					<h4 class="modal-title">
+						Sucesso
+					</h4>
+                  <button type="button" class="close" data-dismiss="modal" onclick="document.getElementById('Mysmallmodal').style.display = 'none'">
+						×
+					</button>
+				</div>
+				<div class="modal-body">
+					Cliente Cadastrado com sucesso.
+				</div>
+			</div>
+		</div>
+{% endif %}
 <a href="{% url 'lista_cliente' %}"><button style="height: 50x; width: 150px; position: absolute; margin-top: calc(100vh - 120px);margin-left: calc(100vw - 180px) " class="btn btn-dark">Ver Clientes</button>
 </a>
 <div style="align-items: center; text-align: center; display: flex; justify-content: center; flex-direction: column;margin-top: 100px">
